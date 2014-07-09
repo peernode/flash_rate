@@ -59,4 +59,21 @@ def get_particle_value(sorted_ar, particle):
         return 0
     index=int(particle*length/100)
     return sorted_ar[index]
-    
+
+def get_xticklabels(time_str, counts):
+    ticks_count=30
+    tick_str=[]
+    if counts==1:
+        ticks_count=1
+        tick_str.append(str(time_str)[4:8])
+    elif counts<=30:
+        ticks_count=counts
+        for i in range(counts):
+            tick_str.append(str(time_str[i])[4:8])
+    else:
+        step=counts/30.0
+        for i in range(30):
+            str_idx=int(i*step+step)
+            tick_str.append(str(time_str[str_idx-1])[4:8])
+
+    return ticks_count, tick_str    
